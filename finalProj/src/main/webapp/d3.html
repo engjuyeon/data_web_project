@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="./resource/c3.css" rel="stylesheet">
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="./resource/c3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+	<div id="chart"></div>
+	
+	
+	
+	
+	
+		
+	<script>
+
+	var year = [];
+	var population = [];
+	var activity_population = [];
+	var employment_rate = [];
+	var gdp = [];
+	var one_person = [];
+	var death = [];
+	var birth = [];
+	var unemployment_rate = [];
+	
+	population.unshift("인구수");
+	activity_population.unshift("경제활동 인구수");
+	employment_rate.unshift("고용률");
+	gdp.unshift("gdp");
+	one_person.unshift("1인가구");
+	death.unshift("사망건수");
+	birth.unshift("출생건수");
+	unemployment_rate.unshift("실업률");
+	
+	
+	window.addEventListener('DOMContentLoaded',function(){
+			$.getJSON('chart.jsp', function(data){
+				$.each(data, function(index,item){
+					year.push(item.year);
+					console.dir("year 저장"+ year);
+					population.push(item.population);
+					console.dir("population 저장" + population);
+					activity_population.push(item.activity_population);
+					console.dir("activity_population 저장" + activity_population);
+					employment_rate.push(item.employment_rate);
+					console.dir("employment_rate 저장" + employment_rate);
+					gdp.push(item.gdp);
+					console.dir("gdp 저장" + gdp);
+					one_person.push(item.one_person);
+					console.dir("one_person 저장" + one_person);
+					death.push(item.death);
+					console.dir("death 저장" + death);
+					birth.push(item.birth);
+					console.dir("birth 저장" + birth);
+					unemployment_rate.push(item.unemployment_rate);
+					console.dir("unemployment_rate 저장" + unemployment_rate);
+				});
+				var chart = c3.generate({
+				    bindto: '#chart',
+				    data: {
+				      columns: [
+				    	 population,
+				    	 activity_population,
+				    	 unemployment_rate,
+				    	 employment_rate,
+				    	 gdp,
+				    	 one_person,
+				    	 death,
+				    	 birth
+				      ],
+				      hide:["경제활동 인구수","고용률","gdp","1인가구","사망건수","출생건수","실업률"],
+				      axes: {
+
+					      인구수: 'y',
+					      고용률: 'y2',
+					      '경제활동 인구수': 'y2',
+					      "gdp" : 'y2',
+					      "1인가구": 'y2',
+					      "사망건수": 'y2',
+					      "출생건수": 'y2',
+					      "실업률": 'y2'
+					      
+				      }
+				    },
+				    axis: {
+				      x:{
+				    	  type:'category',
+				    	  categories: year
+				      },
+				      y:{
+				    	 label:{
+				    		 position:'outer-middle'
+				    		 } 
+				      },
+				      y2:{
+				    	  show:true,
+				    	  label:{position:'outer-middle'}
+				      }
+				    
+				    }
+					});
+			});
+		
+	});
+	
+	</script>
+	
+</body>
+</html>
