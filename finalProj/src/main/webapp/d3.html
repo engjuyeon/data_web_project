@@ -7,18 +7,7 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="./resource/c3.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
-
-	<div id="chart"></div>
-	
-	
-	
-	
-	
-		
-	<script>
-
+<script>
 	var year = [];
 	var population = [];
 	var activity_population = [];
@@ -28,7 +17,23 @@
 	var death = [];
 	var birth = [];
 	var unemployment_rate = [];
+	var image = [];
+</script>
+</head>
+<body>
+
+	<div id="chart"></div>
 	
+	<div>
+		<div>
+		  <p><img id="img" src="" /></p>
+		</div>
+	</div>
+	
+	
+	
+		
+	<script>
 	population.unshift("인구수");
 	activity_population.unshift("경제활동 인구수");
 	employment_rate.unshift("고용률");
@@ -77,9 +82,9 @@
 				      hide:["경제활동 인구수","고용률","gdp","1인가구","사망건수","출생건수","실업률"],
 				      axes: {
 
-					      인구수: 'y',
-					      고용률: 'y2',
-					      '경제활동 인구수': 'y2',
+					      "인구수": 'y',
+					      "고용률": 'y2',
+					      "경제활동 인구수": 'y2',
 					      "gdp" : 'y2',
 					      "1인가구": 'y2',
 					      "사망건수": 'y2',
@@ -105,6 +110,13 @@
 				    
 				    }
 					});
+			});
+			$.getJSON('image.jsp', function(data){
+				$.each(data, function(index,item){
+					image.push(item.image);
+					console.dir("image 저장" + item.image_id);
+				});
+				document.getElementById("img").src = "data:image/;base64," + image[4];
 			});
 		
 	});
