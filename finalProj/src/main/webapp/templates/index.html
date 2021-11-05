@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta content="description" name="description">
+<meta name="google" content="notranslate" />
+<meta content="Mashup templates have been developped by Orson.io team"
+		name="author">
+	
+	<!-- Disable tap highlight on IE -->
+	<meta name="msapplication-tap-highlight" content="no">
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+	<link href="{{url_for('static', filename='css/main.a3f694c0.css')}}" rel="stylesheet">
+	
+
+	<link href="{{url_for('static', filename='css/c3.css')}}" rel="stylesheet">
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <script type="text/javascript" src="{{url_for('static', filename='js/c3.min.js')}}"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<style>
+	html{font-family: 'Noto Serif KR', serif;}
+	button{
+		border: 1px solid black;
+		background-color: transparent !important;
+	    background-image: none !important;
+	    border-color: transparent;
+	    color: black;
+	    padding: 5px;
+	}
+
+button:hover{ color:white; background-color: black; }
+	input{
+		width:300px;
+		height:30px;
+		font-size:16px;
+		border-radius: 10px;
+		margin-bottom : 2px;
+		border: 1px solid black;
+	}
+
+</style>
+<title>공공데이터 분석을 통한 미래 예측</title>
+
+</head>
+<script>
+	var year = [];
+	var population = [];
+	var activity_population = [];
+	var employment_rate = [];
+	var gdp = [];
+	var one_person = [];
+	var death = [];
+	var birth = [];
+	var unemployment_rate = [];
+	var image = [];
+	
+	var win;
+	function create(){
+	win = open('','예측 결과 값','width=300,height=200');
+	}
+</script>
+<body>
+
+	<!-- Add your content of header -->
+	<header>
+		<nav class="navbar-fixed-top navbar-default">
+			<div class="container">
+					<a class="navbar-brand" href="#index" title="">
+						K-Digital Training 4조 분석해조
+					</a>
+			</div>
+		</nav>
+	</header>
+
+
+
+	<div id="index" class="white-text-container background-image-container"
+		style="background-image: url('/static/img/main.png')">
+		<div class="opacity"></div>
+		<div class="container">
+			<div class="row">
+				<div id="Splash" class="col-md-6">
+					<h1>인구 수에 미치는 영향 분석을 통한 미래 서울시 인구 수 예측</h1>
+					<p>(2016 ~ 2019년 데이터 사용)</p>
+					<div class="content-container">
+						<div class="profile-stats">
+							<div class="Stat large-text">
+								<div class="stat-title">인구 수(서울시)</div>
+								<div class="stat-value">432만 명</div>
+								<div class="stat-subtitle"></div>
+							</div>
+							<div class="Stat large-text">
+								<div class="stat-title">1인가구 수(서울시)</div>
+								<div class="stat-value">634425가구</div>
+								<div class="stat-subtitle"></div>
+							</div>
+							<div class="Stat large-text">
+								<div class="stat-title">출생률</div>
+								<div class="stat-value">5.6%</div>
+								<div class="stat-subtitle"></div>
+							</div>
+							<div class="Stat large-text">
+								<div class="stat-title">경제 활동 인구 수</div>
+								<div class="stat-value">5,313천 명</div>
+								<div class="stat-subtitle"></div>
+							</div>
+							<div class="Stat large-text">
+								<div class="stat-title">고용률</div>
+								<div class="stat-value">58.7%</div>
+								<div class="stat-subtitle"></div>
+							</div>
+						</div>
+					</div>
+					<div class="profile-sections">
+						<a class="SectionIcon about " href="#about">
+							<div class="section-icon-title">About</div>
+						</a>
+						<a class="SectionIcon employment " href="#data">
+							<div class="section-icon-title">Chart of data used</div>
+						</a>
+						<a class="SectionIcon demographics " href="#model">
+							<div class="section-icon-title">Model</div>
+						</a>
+						<a class="SectionIcon education " href="#prediction">
+							<div class="section-icon-title">Prediction</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="about"
+		class="white-text-container background-image-container"
+		style="background-image: url('/static/img/main2.png')">
+		<div class="opacity"></div>
+		<div class="container">
+			<div class="row">
+				<div class = "Section about">
+					<h2 class="section-title" >
+						<a class="anchor" href="#about" id="about" style = "color: white;">About</a>
+					</h2>
+					<div class="section-body">
+						<div class="section-content">
+							<div class="section-description">
+								<p>  수집한 데이터에 따르면 인구 수, 세대 당 인구 비율은 감소하고 있고 65세 이상 고령자는 증가하고 있다. 과학의 발전으로 기대 수명이 크게 늘어났기 때문인데 그에 비해 출산율은 감소하고 있어 발생한 현상이다.
+								   이대로 간다면 인구 수는 줄어들 것이고 부양할 인구는 늘고, 생산을 하기 위해 일을 하는 인구는 줄어들어 경제의 큰 영향을 미칠 것으로 예측된다. 저희가 생각한 인구에 미치는 영향이라고 생각되는 데이터를 분석하여 확인하고 
+								   또한 인구에 대한 문제들을 해결하기 위해 분석한 데이터들의 변화가 미래 인구에 어떤 영향이 있는지 예측하고 확인할 수 있도록 하는 것이 이 프로젝트의 목표다. 독립변수로 생각한 데이터로는 1인 가구, 경제 활동 인구 수, 고용률, 실업률,
+								   경제성장률, 출생수, 사망수로 선택했다. 선택한 데이터들이 모두 수치적으로 의미가 있는 변수이고 산점도와 상관계수를 확인해볼 때 독립변수와 종속변수 간의 선형관계가 있다고 할 수 있기 때문에 머신 러닝 선형 회귀(Linear Regression) 모델을 확장하여 시계열에 따른 인구 수을 예측하고 학습 결과를 확인했습니다. 
+								   모델로 예측한 값을 볼 때 ㅇ와 ㅇ의 값이 증가할 때 인구 수가 감소/증가하는 경향을 보이고 ㅇ 와 ㅇ의 값이 감소할 때 인구 수가 감소/증가하는 경향을 보였습니다.</p>
+							</div> 
+						</div>
+					</div>
+					<div class="section-topics"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+ 	<div id="data"
+		class="white-text-container background-image-container">
+		<div class="opacity"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 section-container-spacer">
+					<h2 class="section-title"  style = "padding-bottom : 100px;">
+						<a class="anchor" href="#data" id="data" style = "color: white;">Chart of data used</a>
+					</h2>
+					<div class="text-center">
+						<div id="chart1"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+ 	<div id="model"
+		class="white-text-container background-image-container"
+		style="background-image: url('/static/img/예측2.png')">
+		<div class="container">
+			<div class="row">
+				<div class="section-container-spacer">
+					<h2 class="section-title">
+						<a class="anchor" href="#model" id="model" style = "color: white;">Model</a>
+					</h2>
+				</div>
+				<table border="0" width ="1000" height="1000" align = "center" >
+				    <tr align = "center">
+						<td><h3>변수 간 상관관계</h3></td>
+						<td><p><img id="img" src="" /></p></td>
+				    </tr>
+				    <tr>
+						<td><h3>모델 변수 간의 adjusted R-Squared 값 확인</h3></td>
+						<td><p><img id="img4" src="" /></p></td>
+				    </tr>
+				    <tr>
+						<td><h3>모델 변수 간의 bic 값 확인</h3></td>
+						<td><p><img id="img3" src="" /></p></td>
+				    </tr>
+				    <tr>
+						<td><h3>모델 예측도</h3></td>
+						<td><p><img id="img2" src="{{url_for('static', filename='img/a.png')}}" /></p></td>
+				    </tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+<main>	
+ 	<div id="prediction"
+		class="white-text-container background-image-container">
+		<div class="opacity"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 section-container-spacer">
+					<div class = "Section about">
+						<h2 class="section-title" >
+							<a class="anchor" href="#prediction" id="prediction"  style = "color:white">Prediction</a>
+						</h2>
+						<div class="text-center" style="font-weight: bold;">
+							<h3>인구 수 예측하기</h3>
+							<p>머신 러닝 선형 회귀(Linear Regression) 모델을 확장하여 시계열에 따른 인구 수을 예측하고 학습 결과를 확인했습니다. 미래의 인구 수을 효과적으로 예측할 수
+	                        있습니다.</p>
+	                        <p>데이터를 활용하여 3% 미만의 데이터 오차율을 보이는 인구 수 예측 모델을 개발했습니다.</p>
+						</div>
+						
+<!--  -->		</div>
+						<div>
+	          <section>
+	          	<br>
+	            <div class="text-left">
+	            	
+					<div style = "margin-left : 400px">
+	
+	                    <form action="/" method="POST" target="예측 결과 값" onsubmit='create()'>
+	
+	                        GDP : <input type="text" name="GDP" placeholder="GDP를 입력하세요"> <br>
+	                        출생수(건) : <input type="text" name="birth" placeholder="출생수를 입력하세요"><br>
+	                        사망수(건) : <input type="text" name="dead" placeholder="사망수를 입력하세요"><br>
+	                        경제활동인구수 : <input type="text" name="economy" placeholder="경제활동 인구수를 입력하세요"><br>
+	                        고용률(%) : <input type="text" name="employ" placeholder="고용률을 입력하세요"> <br>
+	                        1인가구수 : <input type="text" name="one" placeholder="1인가구수를 입력하세요"><br>
+	                        실업률(%) : <input type="text" name="unemploy" placeholder="실업률를 입력하세요"><br>
+							
+							<br>
+	                        <button type="submit" id="btn2" style = "margin-left:300px; border: 1px solid black; padding:10px; border-radius: 10px;">예측하기</button>
+	 				
+	                    </form>
+	                </div>
+	            </div>
+	        </section>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+    <div class="footer-copyright py-3">
+
+        © 2021 Copyright:
+
+        <a href="#" target="_blank"> 강창희, 유용현, 정주연 </a>
+
+    </div>
+
+</footer>
+ <script>
+ 	
+	year = "{{year}}";
+	year = year.replace("[","")
+	year = year.replace("]","")
+	year = year.replaceAll(", ",",")
+	year = year.replaceAll(".0", "")
+	year = year.split(',')
+	
+	population = "{{population}}"
+	population = population.replace("[&#39;","")
+	population = population.replace("&#39;","")
+	population = population.replace("]","")
+	population = population.replaceAll(", " , ",")
+	population = population.split(',')
+		
+	activity_population = "{{activity_population}}"
+	activity_population = activity_population.replace("[&#39;","")
+	activity_population = activity_population.replace("&#39;","")
+	activity_population = activity_population.replace("]","")
+	activity_population = activity_population.replaceAll(", " , ",")
+	activity_population = activity_population.split(',')
+	
+	unemployment_rate = "{{unemployment_rate}}"
+	unemployment_rate = unemployment_rate.replace("[&#39;","")
+	unemployment_rate = unemployment_rate.replace("&#39;","")
+	unemployment_rate = unemployment_rate.replace("]","")
+	unemployment_rate = unemployment_rate.replaceAll(", " , ",")
+	unemployment_rate = unemployment_rate.split(',')
+	
+	employment_rate = "{{employment_rate}}"
+	employment_rate = employment_rate.replace("[&#39;","")
+	employment_rate = employment_rate.replace("&#39;","")
+	employment_rate = employment_rate.replace("]","")
+	employment_rate = employment_rate.replaceAll(", " , ",")
+	employment_rate = employment_rate.split(',')
+	
+	gdp = "{{gdp}}"
+	gdp = gdp.replace("[&#39;","")
+	gdp = gdp.replace("&#39;","")
+	gdp = gdp.replace("]","")
+	gdp = gdp.replaceAll(", " , ",")
+	gdp = gdp.split(',')
+	
+	one_person = "{{one_person}}"
+	one_person = one_person.replace("[&#39;","")
+	one_person = one_person.replace("&#39;","")
+	one_person = one_person.replace("]","")
+	one_person = one_person.replaceAll(", " , ",")
+	one_person = one_person.split(',')
+	
+	death = "{{death}}"
+	death = death.replace("[&#39;","")
+	death = death.replace("&#39;","")
+	death = death.replace("]","")
+	death = death.replaceAll(", " , ",")
+	death = death.split(',')
+	
+	birth = "{{birth}}"
+	birth = birth.replace("[&#39;","")
+	birth = birth.replace("&#39;","")
+	birth = birth.replace("]","")
+	birth = birth.replaceAll(", " , ",")
+	birth = birth.split(',')
+	
+	
+	var chart = c3.generate({		
+	    bindto: '#chart1',	    
+	    data: {
+	      columns: [
+	    	 population,
+	    	 activity_population,
+	    	 unemployment_rate,
+	    	 employment_rate,
+	    	 gdp,
+	    	 one_person,
+	    	 death,
+	    	 birth
+	    	 ]
+	      ,
+	      hide:["경제활동 인구수","고용률","gdp","1인가구","사망건수","출생건수","실업률"],
+	      axes: {
+
+		      "인구수": 'y',
+		      "고용률": 'y2',
+		      "경제활동 인구수": 'y2',
+		      "gdp" : 'y2',
+		      "1인가구": 'y2',
+		      "사망건수": 'y2',
+		      "출생건수": 'y2',
+		      "실업률": 'y2'
+		      
+	      }
+	    },
+	    axis: {
+	      x:{
+	    	  type:'category',
+	    	  categories: year
+	      },
+	      y:{
+	    	 label:{
+	    		 position:'outer-middle'
+	    		 } 
+	      },
+	      y2:{
+	    	  show:true,
+	    	  label:{position:'outer-middle'}
+	      }
+	    
+	    }
+		});
+
+	
+	imageData = "{{imageData}}"
+	imageData = imageData.replace("b&#39;","")
+	imageData = imageData.replace("&#39;","")
+	imageData = imageData.replace("&#40;","")
+	imageData = imageData.replace("&#41;","")
+	imageData = imageData.replace("&#44;","")
+	
+	document.getElementById("img").src = "data:image/;base64," + imageData;
+	
+	imageData2 = "{{imageData2}}"
+	imageData2 = imageData2.replace("b&#39;","")
+	imageData2 = imageData2.replace("&#39;","")
+	imageData2 = imageData2.replace("&#40;","")
+	imageData2 = imageData2.replace("&#41;","")
+	imageData2 = imageData2.replace("&#44;","")
+		
+	document.getElementById("img3").src = "data:image/;base64," + imageData2;
+	
+	imageData3 = "{{imageData3}}"
+	imageData3 = imageData3.replace("b&#39;","")
+	imageData3 = imageData3.replace("&#39;","")
+	imageData3 = imageData3.replace("&#40;","")
+	imageData3 = imageData3.replace("&#41;","")
+	imageData3 = imageData3.replace("&#44;","")
+			
+	document.getElementById("img4").src = "data:image/;base64," + imageData3;
+</script>
+</body>
+
+</html>

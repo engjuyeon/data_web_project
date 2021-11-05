@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+	<link href="{{url_for('static', filename='css/main.a3f694c0.css')}}" rel="stylesheet">
+	
+
+	<link href="{{url_for('static', filename='css/c3.css')}}" rel="stylesheet">
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <script type="text/javascript" src="{{url_for('static', filename='js/c3.min.js')}}"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+ 	
+    <style type="text/css">
+
+    html,
+
+    body,
+
+    header,
+
+    .carousel {
+
+      height: 100%;
+
+    }
+
+
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+            .navbar:not(.top-nav-collapse) {
+
+                background: #1C2331!important;
+
+            }
+
+        }
+
+
+    </style>
+    
+<script type="text/javascript">
+	window.moveTo(0,0);
+	window.resizeTo(500,500);
+</script>
+
+<TITLE> 인구 수 예측 결과 </TITLE>
+
+</HEAD>
+
+<BODY>
+<br>
+            <h3 class="h3 text-center mb-5">인구 수 예측 결과</h3>
+
+            <div class="row wow fadeIn">
+            
+                <div class="col-lg-3 col-md-12">
+                    {% if prediction %}
+
+                    <h5 class="text-center mt-3" style = "color : black">결과: {{ prediction }}  명</h5>
+					<input type="button" value="닫기" onclick="self.close()">
+                    {% endif %}
+                </div>
+            </div>
+
+
+
+</BODY>
+</HTML>
+
