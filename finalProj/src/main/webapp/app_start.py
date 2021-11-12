@@ -117,7 +117,7 @@ def index():
         data = pd.DataFrame(total, columns=['year', 'total', 'one', 'economy', 'employ'
             , 'unemploy', 'GDP', 'birth', 'dead'])
 
-        x_data = data[['GDP', 'birth', 'dead', 'economy', 'employ', 'unemploy', 'one']]
+        x_data = data[['GDP', 'birth', 'dead','economy', 'employ',  'one' ,'unemploy']]
         y_data = data[['total']]
 
         print(x_data, '\n\n')
